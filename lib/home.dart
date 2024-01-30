@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.deepOrange,
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 24),
           child: Column(
@@ -39,17 +39,61 @@ class _HomeState extends State<Home> {
               ),
               SizedBox(height: 50),
               Center(
-                  child: _loading
-                      ? Container(
-                    width: 350,
-                          child: Column(
-                            children: <Widget>[
-                              Image.asset('assets/2.1 cat_dog_icon.png'),
-                              SizedBox(height: 50)
-                            ],
-                          ),
-                        )
-                      : Container())
+                child: _loading
+                    ? Container(
+                        width: 350,
+                        child: Column(
+                          children: <Widget>[
+                            Image.asset('assets/2.1 cat_dog_icon.png'),
+                            SizedBox(height: 30)
+                          ],
+                        ),
+                      )
+                    : Container(),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 250,
+                        alignment: Alignment.center,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 25, vertical: 18),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6)),
+                        child: Text(
+                          'Capture ',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 250,
+                        alignment: Alignment.center,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6)),
+                        child: Text(
+                          'Select  ',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ));
