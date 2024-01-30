@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0x004242),
+        backgroundColor: Colors.blueAccent,
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 24),
           child: Column(
@@ -25,14 +25,14 @@ class _HomeState extends State<Home> {
                 height: 50,
               ),
               Text(
-                'Coding cafe',
-                style: TextStyle(color: Color(0x7D9E9E), fontSize: 20),
+                'Wael Technologies',
+                style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               SizedBox(height: 5),
               Text(
                 'Cats and Dogs Detector App ',
                 style: TextStyle(
-                  color: Color(0x7D9E9E),
+                  color: Colors.white,
                   fontWeight: FontWeight.w500,
                   fontSize: 30,
                 ),
@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
               Center(
                   child: _loading
                       ? Container(
-                    width: 400,
+                    width: 350,
                           child: Column(
                             children: <Widget>[
                               Image.asset('assets/2.1 cat_dog_icon.png'),

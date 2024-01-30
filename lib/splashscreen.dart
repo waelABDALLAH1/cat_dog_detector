@@ -66,7 +66,7 @@ class _MySplashPageState extends State<MySplash> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.blueAccent,
+          color: Colors.black,
           image: DecorationImage(
             image: AssetImage('assets/1.png'),
             fit: BoxFit.contain,
