@@ -16,14 +16,14 @@ class _HomeState extends State<Home> {
 
   File _image = File('');
   List<dynamic>? _output;
+
   final picker = ImagePicker();
+
   @override
   void initState() {
     super.initState();
-    loadModel().then((value){
-      setState(() {
-
-      });
+    loadModel().then((value) {
+      setState(() {});
     });
   }
 
@@ -40,8 +40,10 @@ class _HomeState extends State<Home> {
       _loading = false;
     });
   }
-  loadModel()async{
-    await Tflite.loadModel(model: 'assets/model_unquant.tflite',labels: 'assets/labels.txt');
+
+  loadModel() async {
+    await Tflite.loadModel(
+        model: 'assets/model_unquant.tflite', labels: 'assets/labels.txt');
   }
 
   @override
@@ -49,28 +51,27 @@ class _HomeState extends State<Home> {
     // TODO: implement dispose
     super.dispose();
   }
-  pickImage()async{
+
+  pickImage() async {
     var image = await picker.pickImage(source: ImageSource.camera);
-        if (image== null )return null ;
-
-        setState(() {
-          _image=File(image.path);
-        });
-        detectImage(_image);
-
-
-  }
-  pickGalleryImage()async{
-    var image = await picker.pickImage(source: ImageSource.gallery);
-    if (image== null )return null ;
+    if (image == null) return null;
 
     setState(() {
-      _image=File(image.path);
+      _image = File(image.path);
     });
     detectImage(_image);
-
-
   }
+
+  pickGalleryImage() async {
+    var image = await picker.pickImage(source: ImageSource.gallery);
+    if (image == null) return null;
+
+    setState(() {
+      _image = File(image.path);
+    });
+    detectImage(_image);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,7 +109,29 @@ class _HomeState extends State<Home> {
                           ],
                         ),
                       )
-                    : Container(),
+                    : Container(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              height: 300,
+                              decoration: BoxDecoration(
+                                border: Border.all(width: 2),
+                                borderRadius: BorderRadius.circular(5)
+                              ),
+                              child: Image.file(_image),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            _output != null
+                                ? Text('${_output?[0]['label'] ?? 'Label not available'}',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  )
+                                : Container(),
+                          ],
+                        ),
+                      ),
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -116,7 +139,9 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        pickImage();
+                      },
                       child: Container(
                         width: MediaQuery.of(context).size.width - 250,
                         alignment: Alignment.center,
@@ -135,7 +160,9 @@ class _HomeState extends State<Home> {
                       width: 10,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        pickGalleryImage();
+                      },
                       child: Container(
                         width: MediaQuery.of(context).size.width - 250,
                         alignment: Alignment.center,
